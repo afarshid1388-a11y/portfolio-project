@@ -1,0 +1,2079 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amirreza Farshid | Front-End Developer</title>
+    <meta
+      name="description"
+      content="Amirreza Farshid — Front-End Developer designing modern, responsive and animated websites with HTML, CSS, Tailwind, Bootstrap and JavaScript."
+    />
+
+    <!-- Open Graph / social preview tags -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://afarshid1388-a11y.github.io/portfolio-project/"
+    />
+    <meta
+      property="og:title"
+      content="Amirreza Farshid | Front-End Developer"
+    />
+    <meta
+      property="og:description"
+      content="Front-End Developer designing modern, responsive and animated websites with HTML, CSS, Tailwind, Bootstrap and JavaScript."
+    />
+
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Amirreza Farshid | Front-End Developer"
+    />
+    <meta
+      name="twitter:description"
+      content="Front-End Developer designing modern, responsive and animated websites with HTML, CSS, Tailwind, Bootstrap and JavaScript."
+    />
+
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%2360a5fa'/%3E%3Cstop offset='100%25' stop-color='%23a855f7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%23030712'/%3E%3Ctext x='16' y='23' font-family='Arial, sans-serif' font-weight='700' font-size='18' fill='url(%23g)' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+        /* leaves room above any anchor target equal to the fixed navbar's
+           real height (+ a little breathing room), so clicking a nav link
+           never scrolls a section's title behind the navbar. The --navbar-h
+           value is kept in sync with the navbar's actual height by JS,
+           since that height differs between mobile/tablet/desktop. */
+        scroll-padding-top: calc(var(--navbar-h, 88px) + 16px);
+      }
+      body {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+
+      html[lang="fa"] body {
+        font-family: "Vazirmatn", sans-serif;
+      }
+
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #030712;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #3b82f6, #a855f7);
+        border-radius: 999px;
+      }
+
+      /* ============ accessibility: focus states ============ */
+      /* consistent, visible focus ring for keyboard users on every
+         interactive element (buttons, links, inputs) */
+      a:focus-visible,
+      button:focus-visible,
+      input:focus-visible,
+      textarea:focus-visible {
+        outline: 2px solid #60a5fa;
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+
+      /* nav links: show the same underline on keyboard focus as on hover */
+      .underline-grow:focus-visible::after {
+        width: 100%;
+      }
+
+      /* ============ skip link ============ */
+      .skip-link {
+        position: absolute;
+        top: -3rem;
+        left: 1rem;
+        z-index: 100;
+        background: #2563eb;
+        color: #fff;
+        padding: 0.6rem 1.2rem;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: top 0.2s ease;
+      }
+      .skip-link:focus {
+        top: 1rem;
+        outline: 2px solid #fff;
+        outline-offset: 2px;
+      }
+      html[dir="rtl"] .skip-link {
+        left: auto;
+        right: 1rem;
+      }
+
+      @keyframes blob-move {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        33% {
+          transform: translate(20px, -25px) scale(1.1);
+        }
+        66% {
+          transform: translate(-15px, 15px) scale(0.95);
+        }
+      }
+      .blob {
+        animation: blob-move 9s ease-in-out infinite;
+      }
+
+      @keyframes float-y {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-14px);
+        }
+      }
+      .float {
+        animation: float-y 5s ease-in-out infinite;
+      }
+
+      @keyframes spin-slow {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .ring-spin {
+        animation: spin-slow 6s linear infinite;
+        background: conic-gradient(from 0deg, #3b82f6, #a855f7, #3b82f6);
+      }
+
+      @keyframes fade-up {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .reveal {
+        opacity: 0;
+        animation: fade-up 0.7s ease-out forwards;
+      }
+
+      @keyframes gradient-shift {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+      .gradient-text {
+        background: linear-gradient(90deg, #60a5fa, #a78bfa, #60a5fa);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: gradient-shift 5s ease-in-out infinite;
+      }
+
+      .reveal-float {
+        opacity: 0;
+        animation:
+          fade-up 0.7s ease-out forwards,
+          float-y 5s ease-in-out infinite;
+        animation-delay: 0.2s, 0.9s;
+      }
+
+      .btn-shine {
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-shine::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -75%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.35),
+          transparent
+        );
+        transform: skewX(-20deg);
+        transition: left 0.6s ease;
+      }
+      .btn-shine:hover::after {
+        left: 125%;
+      }
+
+      .underline-grow {
+        position: relative;
+      }
+      .underline-grow::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 0;
+        height: 2px;
+        background: #60a5fa;
+        transition: width 0.3s ease;
+      }
+      .underline-grow:hover::after {
+        width: 100%;
+      }
+
+      html[dir="rtl"] .underline-grow::after {
+        left: auto;
+        right: 0;
+      }
+
+      /* extra breathing room between the Persian greeting and the wave emoji when it wraps */
+      html[dir="rtl"] .hero-heading {
+        line-height: 2.2;
+      }
+      html[dir="rtl"] .hero-wave {
+        margin-top: 1rem;
+      }
+
+      /* mobile: shrink the Persian heading so it fits on one line and the emoji doesn't drop down */
+      @media (max-width: 767px) {
+        html[dir="rtl"] .hero-heading {
+          font-size: 1.875rem; /* similar to Tailwind's text-3xl */
+          line-height: 1.6;
+        }
+        html[dir="rtl"] .hero-wave {
+          margin-top: 0;
+        }
+      }
+
+      /* tablet screens (e.g. iPad): smaller heading and tighter spacing so it looks clean */
+      @media (min-width: 768px) and (max-width: 1024px) {
+        html[dir="rtl"] .hero-heading {
+          font-size: 2.75rem; /* smaller than the default md:text-6xl (3.75rem) */
+          line-height: 1.5;
+        }
+        html[dir="rtl"] .hero-wave {
+          margin-top: 0.5rem;
+        }
+      }
+
+      /* language + theme toggle buttons */
+      #lang-toggle,
+      #theme-toggle {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.05);
+        color: inherit;
+        font-weight: 700;
+        font-size: 0.8rem;
+        letter-spacing: 0.02em;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+      }
+      #lang-toggle:hover,
+      #theme-toggle:hover {
+        border-color: #60a5fa;
+        box-shadow: 0 0 16px rgba(96, 165, 250, 0.4);
+        transform: scale(1.05);
+      }
+
+      /* theme toggle icon swap */
+      #theme-toggle svg {
+        display: none;
+        width: 19px;
+        height: 19px;
+      }
+      html:not(.light) #theme-toggle .icon-sun {
+        display: block;
+      }
+      html.light #theme-toggle .icon-moon {
+        display: block;
+      }
+
+      /* hamburger menu button (mobile only) */
+      #menu-toggle {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+      }
+      #menu-toggle span {
+        transition: all 0.3s ease;
+      }
+      #menu-toggle.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      #menu-toggle.open span:nth-child(2) {
+        opacity: 0;
+      }
+      #menu-toggle.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      #mobile-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      #mobile-menu.open {
+        max-height: 300px;
+      }
+
+      /* ============ back to top button ============ */
+      #back-to-top.visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      html[dir="rtl"] #back-to-top {
+        right: auto;
+        left: 1.5rem;
+      }
+      @media (min-width: 640px) {
+        html[dir="rtl"] #back-to-top {
+          left: 2rem;
+        }
+      }
+
+      /* ============ what-i-can-do cards ============ */
+      .capability-card {
+        transition: all 0.3s ease;
+      }
+
+      /* on small screens, only show the captcha error as text — no red
+         border around the widget itself */
+      @media (max-width: 639px) {
+        #captcha-container {
+          border-color: transparent !important;
+        }
+      }
+      .capability-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(96, 165, 250, 0.5);
+        box-shadow: 0 18px 40px -14px rgba(96, 165, 250, 0.35);
+      }
+      .capability-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          135deg,
+          rgba(59, 130, 246, 0.18),
+          rgba(168, 85, 247, 0.18)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .capability-icon svg {
+        width: 26px;
+        height: 26px;
+      }
+
+      /* ============ Light theme ============ */
+      html.light body {
+        background-color: #f8fafc;
+        color: #0f172a;
+      }
+      html.light ::-webkit-scrollbar-track {
+        background: #e2e8f0;
+      }
+      html.light header nav {
+        background-color: rgba(255, 255, 255, 0.75);
+        border-bottom-color: rgba(15, 23, 42, 0.08);
+      }
+      html.light #mobile-menu {
+        background-color: rgba(255, 255, 255, 0.97);
+        border-bottom-color: rgba(15, 23, 42, 0.08);
+      }
+      html.light .text-gray-400 {
+        color: #475569;
+      }
+      html.light .text-gray-500 {
+        color: #64748b;
+      }
+      html.light #lang-toggle,
+      html.light #theme-toggle {
+        border-color: rgba(15, 23, 42, 0.15);
+        background: rgba(15, 23, 42, 0.05);
+        color: #0f172a;
+      }
+      html.light #menu-toggle span {
+        background-color: #0f172a;
+      }
+      html.light .border-gray-600 {
+        border-color: #cbd5e1;
+      }
+      html.light img.border-gray-950 {
+        border-color: #f8fafc;
+      }
+      html.light .bg-gray-900.border-white\/10 {
+        background-color: #ffffff;
+        border-color: rgba(15, 23, 42, 0.06);
+        box-shadow: 0 20px 45px -14px rgba(15, 23, 42, 0.28);
+      }
+      html.light .bg-gray-800 {
+        background-color: #ffffff;
+        border: 1px solid rgba(15, 23, 42, 0.05);
+        box-shadow: 0 14px 30px -10px rgba(15, 23, 42, 0.22);
+      }
+      html.light .bg-gray-700 {
+        background-color: #e2e8f0;
+      }
+      html.light .capability-icon {
+        background: linear-gradient(
+          135deg,
+          rgba(59, 130, 246, 0.12),
+          rgba(168, 85, 247, 0.12)
+        );
+        border-color: rgba(15, 23, 42, 0.08);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .blob,
+        .float,
+        .gradient-text,
+        .ring-spin {
+          animation: none !important;
+        }
+        .reveal,
+        .reveal-float {
+          opacity: 1 !important;
+          animation: none !important;
+        }
+        /* Tailwind's built-in utilities aren't covered by the rules above —
+           the wave emoji, the scroll-down arrow, the glow behind the
+           profile photo, and the "available for work" dot all need to stop
+           moving too when the user has asked for reduced motion. */
+        .animate-bounce,
+        .animate-pulse {
+          animation: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-950 text-white">
+    <a href="#main-content" class="skip-link" data-i18n="skipToContent"
+      >Skip to main content</a
+    >
+    <!-- Header / Navbar -->
+    <header>
+      <nav
+        id="site-navbar"
+        class="fixed top-0 left-0 right-0 flex justify-between items-center p-4 sm:p-6 bg-gray-900/70 backdrop-blur z-50 border-b border-white/5"
+      >
+        <p
+          class="text-base sm:text-lg lg:text-2xl font-bold gradient-text whitespace-nowrap"
+          data-i18n="logoName"
+        >
+          Amirreza Farshid
+        </p>
+
+        <div class="flex items-center gap-3 sm:gap-4 md:gap-8">
+          <!-- desktop nav links -->
+          <ul class="hidden md:flex gap-8 text-sm">
+            <li>
+              <a
+                href="#home"
+                class="underline-grow hover:text-blue-400 transition-colors"
+                data-i18n="navHome"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="#skills"
+                class="underline-grow hover:text-blue-400 transition-colors"
+                data-i18n="navSkills"
+                >Skills</a
+              >
+            </li>
+            <li>
+              <a
+                href="#capabilities"
+                class="underline-grow hover:text-blue-400 transition-colors"
+                data-i18n="navCapabilities"
+                >What I Can Do</a
+              >
+            </li>
+            <li>
+              <a
+                href="#projects"
+                class="underline-grow hover:text-blue-400 transition-colors"
+                data-i18n="navProjects"
+                >Projects</a
+              >
+            </li>
+            <li>
+              <a
+                href="#contact"
+                class="underline-grow hover:text-blue-400 transition-colors"
+                data-i18n="navContact"
+                >Contact</a
+              >
+            </li>
+          </ul>
+
+          <div class="flex items-center gap-4">
+            <button id="theme-toggle" type="button" aria-label="Toggle theme">
+              <svg
+                class="icon-sun"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="4"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+              <svg
+                class="icon-moon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                ></path>
+              </svg>
+            </button>
+
+            <button id="lang-toggle" type="button" aria-label="Toggle language">
+              fa
+            </button>
+          </div>
+
+          <!-- hamburger (mobile only) -->
+          <button
+            id="menu-toggle"
+            type="button"
+            aria-label="Toggle menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            class="md:hidden flex flex-col justify-center items-center gap-1.5"
+          >
+            <span class="block w-6 h-0.5 bg-white rounded-full"></span>
+            <span class="block w-6 h-0.5 bg-white rounded-full"></span>
+            <span class="block w-6 h-0.5 bg-white rounded-full"></span>
+          </button>
+        </div>
+
+        <!-- mobile dropdown menu -->
+        <ul
+          id="mobile-menu"
+          class="md:hidden absolute top-full left-0 right-0 bg-gray-900/95 backdrop-blur border-b border-white/5 flex flex-col items-center gap-5 text-sm"
+        >
+          <li class="pt-5">
+            <a
+              href="#home"
+              tabindex="-1"
+              class="underline-grow hover:text-blue-400 transition-colors"
+              data-i18n="navHome"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="#skills"
+              tabindex="-1"
+              class="underline-grow hover:text-blue-400 transition-colors"
+              data-i18n="navSkills"
+              >Skills</a
+            >
+          </li>
+          <li>
+            <a
+              href="#capabilities"
+              tabindex="-1"
+              class="underline-grow hover:text-blue-400 transition-colors"
+              data-i18n="navCapabilities"
+              >What I Can Do</a
+            >
+          </li>
+          <li class="pb-5">
+            <a
+              href="#projects"
+              tabindex="-1"
+              class="underline-grow hover:text-blue-400 transition-colors"
+              data-i18n="navProjects"
+              >Projects</a
+            >
+          </li>
+          <li class="pb-5">
+            <a
+              href="#contact"
+              tabindex="-1"
+              class="underline-grow hover:text-blue-400 transition-colors"
+              data-i18n="navContact"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div id="navbar-spacer"></div>
+
+    <main id="main-content" tabindex="-1">
+      <!-- Hero -->
+      <section
+        id="home"
+        class="relative flex flex-col md:flex-row items-center justify-between px-6 md:px-20 py-24 overflow-hidden"
+      >
+        <div
+          class="absolute top-10 -left-20 w-72 h-72 bg-blue-600/20 rounded-full blur-3xl blob"
+        ></div>
+        <div
+          class="absolute bottom-0 right-10 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl blob"
+          style="animation-delay: -3s"
+        ></div>
+
+        <!-- Text -->
+        <div class="max-w-xl relative z-10 w-full">
+          <h1
+            class="hero-heading reveal text-3xl sm:text-4xl md:text-6xl font-bold mb-6 leading-tight break-words"
+          >
+            <span data-i18n="heroGreeting"
+              >Hi, I'm <span class="gradient-text">Amirreza</span></span
+            >
+            <span class="hero-wave inline-block animate-bounce">👋</span>
+          </h1>
+          <p
+            class="reveal text-gray-400 mb-6"
+            style="animation-delay: 0.15s"
+            data-i18n="heroSubtitle"
+          >
+            Front-End Developer passionate about designing modern, responsive
+            and animated websites.
+          </p>
+
+          <div
+            class="reveal flex flex-wrap gap-4"
+            style="animation-delay: 0.3s"
+          >
+            <a
+              href="#projects"
+              class="btn-shine bg-blue-500 hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/40 px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105"
+              data-i18n="btnProjects"
+            >
+              My Projects
+            </a>
+            <a
+              href="#skills"
+              class="btn-shine border border-gray-600 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-500/20 px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105"
+              data-i18n="btnSkills"
+            >
+              My Skills
+            </a>
+          </div>
+        </div>
+
+        <!-- Profile Image -->
+        <div class="reveal-float mt-14 md:mt-0 relative z-10">
+          <div
+            class="w-64 h-64 rounded-full bg-blue-500/20 blur-3xl absolute inset-0 m-auto animate-pulse"
+          ></div>
+
+          <div class="relative w-56 h-56 sm:w-72 sm:h-72">
+            <!-- حلقه چرخان -->
+            <div class="absolute inset-0 rounded-full ring-spin"></div>
+
+            <!-- عکس ثابت -->
+            <div class="absolute inset-2 rounded-full overflow-hidden">
+              <img
+                src="./pictures/myphoto.webp"
+                class="w-full h-full object-cover rounded-full border-4 border-gray-950 shadow-2xl"
+                alt="Amirreza Farshid, Front-End Developer"
+              />
+            </div>
+          </div>
+
+          <span
+            class="absolute -bottom-2 right-2 flex items-center gap-2 bg-gray-900 border border-white/10 pl-2 pr-3 py-1.5 rounded-full text-xs shadow-lg"
+          >
+            <span
+              class="w-2 h-2 rounded-full bg-green-400 animate-pulse"
+            ></span>
+            <span data-i18n="availableForWork">Available for work</span>
+          </span>
+        </div>
+      </section>
+
+      <div class="flex justify-center -mt-6 mb-6 relative z-10">
+        <span class="text-gray-500 text-xl animate-bounce">↓</span>
+      </div>
+      <!-- Skills -->
+      <section id="skills" class="px-6 md:px-20 py-10">
+        <!-- Title -->
+        <div class="text-center mb-12">
+          <h2
+            class="text-4xl md:text-5xl font-bold gradient-text"
+            data-i18n="skillsTitle"
+          >
+            Skills
+          </h2>
+
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-4 rounded-full"
+          ></div>
+        </div>
+
+        <!-- 🔲 Skill Cards -->
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-6 mb-12">
+          <div class="bg-gray-800 p-6 rounded-xl text-center">HTML</div>
+          <div class="bg-gray-800 p-6 rounded-xl text-center">CSS</div>
+          <div class="bg-gray-800 p-6 rounded-xl text-center">JavaScript</div>
+          <div class="bg-gray-800 p-6 rounded-xl text-center">Tailwind</div>
+          <div class="bg-gray-800 p-6 rounded-xl text-center">Bootstrap</div>
+        </div>
+
+        <!-- 📊 Progress Bars (اینجا دقیقا باید باشه) -->
+        <div class="max-w-xl mx-auto space-y-6">
+          <!-- HTML -->
+          <div class="group cursor-pointer">
+            <div class="flex justify-between mb-1">
+              <span>HTML</span>
+              <span>90%</span>
+            </div>
+            <div
+              class="w-full bg-gray-700 h-3 rounded-full transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/50"
+            >
+              <div
+                class="bg-gradient-to-r from-blue-500 to-purple-500 h-full rounded-full w-[90%] origin-left group-hover:animate-[grow_1s_ease-out]"
+              ></div>
+            </div>
+          </div>
+
+          <!-- CSS -->
+          <div class="group cursor-pointer">
+            <div class="flex justify-between mb-1">
+              <span>CSS</span>
+              <span>90%</span>
+            </div>
+            <div
+              class="w-full bg-gray-700 h-3 rounded-full transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/50"
+            >
+              <div
+                class="bg-gradient-to-r from-blue-500 to-purple-500 h-full rounded-full w-[90%] origin-left group-hover:animate-[grow_1s_ease-out]"
+              ></div>
+            </div>
+          </div>
+
+          <!-- JS -->
+          <div class="group cursor-pointer">
+            <div class="flex justify-between mb-1">
+              <span>JavaScript</span>
+              <span>80%</span>
+            </div>
+            <div
+              class="w-full bg-gray-700 h-3 rounded-full transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/50"
+            >
+              <div
+                class="bg-gradient-to-r from-blue-500 to-purple-500 h-full rounded-full w-[80%] origin-left group-hover:animate-[grow_1s_ease-out]"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Tailwind -->
+          <div class="group cursor-pointer">
+            <div class="flex justify-between mb-1">
+              <span>Tailwind</span>
+              <span>75%</span>
+            </div>
+            <div
+              class="w-full bg-gray-700 h-3 rounded-full transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/50"
+            >
+              <div
+                class="bg-gradient-to-r from-blue-500 to-purple-500 h-full rounded-full w-[75%] origin-left group-hover:animate-[grow_1s_ease-out]"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Bootstrap -->
+          <div class="group cursor-pointer">
+            <div class="flex justify-between mb-1">
+              <span>Bootstrap</span>
+              <span>75%</span>
+            </div>
+            <div
+              class="w-full bg-gray-700 h-3 rounded-full transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/50"
+            >
+              <div
+                class="bg-gradient-to-r from-blue-500 to-purple-500 h-full rounded-full w-[75%] origin-left group-hover:animate-[grow_1s_ease-out]"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- What I Can Do -->
+      <section
+        id="capabilities"
+        class="px-6 md:px-20 py-16 relative overflow-hidden"
+      >
+        <div
+          class="absolute top-1/2 -left-32 w-80 h-80 bg-purple-600/10 rounded-full blur-3xl blob"
+          style="animation-delay: -5s"
+        ></div>
+
+        <div class="text-center mb-12 relative z-10">
+          <h2
+            class="text-4xl md:text-5xl font-bold gradient-text"
+            data-i18n="capabilitiesTitle"
+          >
+            What Can I Do?
+          </h2>
+          <p
+            class="text-gray-400 mt-4 max-w-xl mx-auto"
+            data-i18n="capabilitiesSubtitle"
+          >
+            A closer look at the kind of work I can take on with the tools I
+            know.
+          </p>
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-4 rounded-full"
+          ></div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+          <!-- Responsive Design -->
+          <div
+            class="capability-card bg-gray-900 border border-white/10 rounded-2xl p-6"
+          >
+            <div class="capability-icon mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#60a5fa"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="2" y="4" width="14" height="10" rx="1"></rect>
+                <line x1="6" y1="18" x2="12" y2="18"></line>
+                <rect x="17" y="8" width="5" height="9" rx="1"></rect>
+              </svg>
+            </div>
+            <h3
+              class="text-lg font-bold mb-2 gradient-text"
+              data-i18n="capResponsiveTitle"
+            >
+              Responsive Web Design
+            </h3>
+            <p
+              class="text-gray-400 text-sm leading-relaxed"
+              data-i18n="capResponsiveDesc"
+            >
+              Building websites that look and work great on any screen, from
+              mobile phones to large desktop monitors.
+            </p>
+          </div>
+
+          <!-- Landing Pages -->
+          <div
+            class="capability-card bg-gray-900 border border-white/10 rounded-2xl p-6"
+          >
+            <div class="capability-icon mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#a855f7"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                <line x1="3" y1="9" x2="21" y2="9"></line>
+                <line x1="7" y1="13" x2="13" y2="13"></line>
+                <line x1="7" y1="16" x2="17" y2="16"></line>
+              </svg>
+            </div>
+            <h3
+              class="text-lg font-bold mb-2 gradient-text"
+              data-i18n="capLandingTitle"
+            >
+              Store, Personal & Company Websites
+            </h3>
+            <p
+              class="text-gray-400 text-sm leading-relaxed"
+              data-i18n="capLandingDesc"
+            >
+              Designing e-commerce/store websites, personal websites, and
+              company websites using Bootstrap, Tailwind, JavaScript, HTML and
+              CSS.
+            </p>
+          </div>
+
+          <!-- Animations -->
+          <div
+            class="capability-card bg-gray-900 border border-white/10 rounded-2xl p-6"
+          >
+            <div class="capability-icon mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#60a5fa"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 2v4"></path>
+                <path d="M12 18v4"></path>
+                <path d="M4.93 4.93l2.83 2.83"></path>
+                <path d="M16.24 16.24l2.83 2.83"></path>
+                <path d="M2 12h4"></path>
+                <path d="M18 12h4"></path>
+                <path d="M4.93 19.07l2.83-2.83"></path>
+                <path d="M16.24 7.76l2.83-2.83"></path>
+              </svg>
+            </div>
+            <h3
+              class="text-lg font-bold mb-2 gradient-text"
+              data-i18n="capAnimationTitle"
+            >
+              UI Animations & Micro-interactions
+            </h3>
+            <p
+              class="text-gray-400 text-sm leading-relaxed"
+              data-i18n="capAnimationDesc"
+            >
+              Adding smooth hover effects, floating shapes, fade-ins and other
+              small animations that make a site feel alive.
+            </p>
+          </div>
+
+          <!-- Multi-language -->
+          <div
+            class="capability-card bg-gray-900 border border-white/10 rounded-2xl p-6"
+          >
+            <div class="capability-icon mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#a855f7"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15 15 0 0 1 0 20a15 15 0 0 1 0-20z"></path>
+              </svg>
+            </div>
+            <h3
+              class="text-lg font-bold mb-2 gradient-text"
+              data-i18n="capI18nTitle"
+            >
+              Multi-language (RTL/LTR) Sites
+            </h3>
+            <p
+              class="text-gray-400 text-sm leading-relaxed"
+              data-i18n="capI18nDesc"
+            >
+              Building sites that switch between Persian and English, correctly
+              handling RTL and LTR layouts.
+            </p>
+          </div>
+
+          <!-- Dark/Light Theme -->
+          <div
+            class="capability-card bg-gray-900 border border-white/10 rounded-2xl p-6"
+          >
+            <div class="capability-icon mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#60a5fa"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                ></path>
+              </svg>
+            </div>
+            <h3
+              class="text-lg font-bold mb-2 gradient-text"
+              data-i18n="capThemeTitle"
+            >
+              Dark / Light Mode
+            </h3>
+            <p
+              class="text-gray-400 text-sm leading-relaxed"
+              data-i18n="capThemeDesc"
+            >
+              Implementing theme switchers that remember the user's preference
+              and adapt the entire design smoothly.
+            </p>
+          </div>
+
+          <!-- UI Kits -->
+          <div
+            class="capability-card bg-gray-900 border border-white/10 rounded-2xl p-6"
+          >
+            <div class="capability-icon mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#a855f7"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+              </svg>
+            </div>
+            <h3
+              class="text-lg font-bold mb-2 gradient-text"
+              data-i18n="capComponentsTitle"
+            >
+              Reusable UI Components
+            </h3>
+            <p
+              class="text-gray-400 text-sm leading-relaxed"
+              data-i18n="capComponentsDesc"
+            >
+              Building buttons, cards, navbars, progress bars and menus with
+              Tailwind and Bootstrap that stay consistent across a project.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+
+      <section id="projects" class="px-6 md:px-20 py-16">
+        <h2
+          class="text-3xl font-bold gradient-text mb-10 text-center"
+          data-i18n="projectsTitle"
+        >
+          My Projects
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-gray-900 border border-white/10 rounded-2xl p-6">
+            <h3
+              class="text-xl font-bold mb-3 gradient-text"
+              data-i18n="digilandTitle"
+            >
+              DigiLand Project
+            </h3>
+
+            <p
+              class="text-gray-400 mb-6 leading-relaxed"
+              data-i18n="digilandDesc"
+            >
+              This project was built using HTML, CSS, Tailwind, Swiper.js and
+              Vanilla JS. It is a sample recreation of the DigiLand website. The
+              site is fully responsive and uses numerous animations.
+            </p>
+
+            <a
+              href="https://afarshid1388-a11y.github.io/digiland-project/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-shine inline-block bg-blue-500 hover:bg-blue-600 px-5 py-2 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/40"
+              data-i18n="viewDemo"
+            >
+              View Demo
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section
+        id="contact"
+        class="px-6 md:px-20 py-16 relative overflow-hidden"
+      >
+        <div
+          class="absolute bottom-0 -right-24 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl blob"
+          style="animation-delay: -2s"
+        ></div>
+
+        <div class="text-center mb-10 relative z-10">
+          <h2
+            class="text-4xl md:text-5xl font-bold gradient-text"
+            data-i18n="contactTitle"
+          >
+            Get In Touch
+          </h2>
+          <p
+            class="text-gray-400 mt-4 max-w-xl mx-auto"
+            data-i18n="contactSubtitle"
+          >
+            Have a project in mind? Fill out the form below and I'll get back to
+            you by email.
+          </p>
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-4 rounded-full"
+          ></div>
+        </div>
+
+        <form
+          id="contact-form"
+          class="max-w-xl mx-auto bg-gray-900 border border-white/10 rounded-2xl p-6 sm:p-8 relative z-10 space-y-5"
+          novalidate
+        >
+          <!-- Web3Forms access key: replace YOUR_ACCESS_KEY_HERE with your own key from web3forms.com -->
+          <input
+            type="hidden"
+            name="access_key"
+            value="e73d6237-de3c-4c1c-9b51-d102b7260114"
+          />
+          <input
+            type="checkbox"
+            name="botcheck"
+            class="hidden"
+            style="display: none"
+            tabindex="-1"
+            autocomplete="off"
+          />
+
+          <div>
+            <label for="contact-name" class="block text-sm text-gray-400 mb-2">
+              <span data-i18n="contactNameLabel">Full Name</span>
+              <span class="text-red-400" aria-hidden="true">*</span>
+            </label>
+            <input
+              id="contact-name"
+              name="name"
+              type="text"
+              required
+              minlength="2"
+              autocomplete="name"
+              aria-describedby="contact-name-error"
+              class="w-full bg-gray-800 border border-white/10 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-blue-400 transition-colors"
+              data-i18n-placeholder="contactNamePlaceholder"
+              placeholder="Please enter your full name"
+            />
+            <p
+              id="contact-name-error"
+              class="mt-1.5 text-xs text-red-400 hidden"
+              role="alert"
+            ></p>
+          </div>
+
+          <div>
+            <label for="contact-email" class="block text-sm text-gray-400 mb-2">
+              <span data-i18n="contactEmailLabel">Email</span>
+              <span class="text-red-400" aria-hidden="true">*</span>
+            </label>
+            <input
+              id="contact-email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              aria-describedby="contact-email-error"
+              class="w-full bg-gray-800 border border-white/10 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-blue-400 transition-colors"
+              data-i18n-placeholder="contactEmailPlaceholder"
+              placeholder="you@example.com"
+            />
+            <p
+              id="contact-email-error"
+              class="mt-1.5 text-xs text-red-400 hidden"
+              role="alert"
+            ></p>
+          </div>
+
+          <div>
+            <label
+              for="contact-message"
+              class="block text-sm text-gray-400 mb-2"
+            >
+              <span data-i18n="contactMessageLabel">Message</span>
+              <span class="text-red-400" aria-hidden="true">*</span>
+            </label>
+            <textarea
+              id="contact-message"
+              name="message"
+              rows="5"
+              required
+              minlength="10"
+              aria-describedby="contact-message-error"
+              class="w-full bg-gray-800 border border-white/10 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-blue-400 transition-colors resize-none"
+              data-i18n-placeholder="contactMessagePlaceholder"
+              placeholder="Tell me about your project..."
+            ></textarea>
+            <p
+              id="contact-message-error"
+              class="mt-1.5 text-xs text-red-400 hidden"
+              role="alert"
+            ></p>
+          </div>
+
+          <div>
+            <div
+              id="captcha-container"
+              class="flex justify-center p-1 rounded-lg border-2 border-transparent transition-colors"
+            >
+              <div
+                class="h-captcha"
+                data-captcha="true"
+                data-callback="onCaptchaVerified"
+              ></div>
+            </div>
+            <p
+              id="contact-captcha-error"
+              class="mt-1.5 text-xs text-red-400 hidden text-center"
+              role="alert"
+            ></p>
+          </div>
+
+          <button
+            type="submit"
+            id="contact-submit"
+            class="btn-shine w-full bg-blue-500 hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/40 px-6 py-3 rounded-xl transition-all duration-300 hover:scale-[1.02] font-medium disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+            data-i18n="contactSubmit"
+          >
+            Send Message
+          </button>
+
+          <p
+            id="contact-status"
+            class="text-center text-sm rounded-lg py-2 px-3 hidden"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          ></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="px-6 md:px-20 py-8 border-t border-white/5 text-center">
+      <p class="text-gray-500 text-sm" data-i18n="footerText">
+        © 2026 Amirreza Farshid. All rights reserved.
+      </p>
+    </footer>
+
+    <!-- Back to top button -->
+    <button
+      id="back-to-top"
+      type="button"
+      aria-label="Back to top"
+      tabindex="-1"
+      class="btn-shine fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-40 w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 shadow-lg hover:shadow-blue-500/40 flex items-center justify-center transition-all duration-300 opacity-0 translate-y-4 pointer-events-none"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="w-5 h-5"
+        aria-hidden="true"
+      >
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </button>
+
+    <script>
+      const translations = {
+        en: {
+          logoName: "Amirreza Farshid",
+          navHome: "Home",
+          navSkills: "Skills",
+          navCapabilities: "What I Can Do",
+          navProjects: "Projects",
+          navContact: "Contact",
+          heroGreeting: 'Hi, I\'m <span class="gradient-text">Amirreza</span>',
+          heroSubtitle:
+            "Front-End Developer passionate about designing modern, responsive and animated websites.",
+          btnProjects: "My Projects",
+          btnSkills: "My Skills",
+          availableForWork: "Available for work",
+          skillsTitle: "Skills",
+          capabilitiesTitle: "What Can I Do?",
+          capabilitiesSubtitle:
+            "A closer look at the kind of work I can take on with the tools I know.",
+          capResponsiveTitle: "Responsive Web Design",
+          capResponsiveDesc:
+            "Building websites that look and work great on any screen, from mobile phones to large desktop monitors.",
+          capLandingTitle: "Store, Personal & Company Websites",
+          capLandingDesc:
+            "Designing e-commerce/store websites, personal websites, and company websites using Bootstrap, Tailwind, JavaScript, HTML and CSS.",
+          capAnimationTitle: "UI Animations & Micro-interactions",
+          capAnimationDesc:
+            "Adding smooth hover effects, floating shapes, fade-ins and other small animations that make a site feel alive.",
+          capI18nTitle: "Multi-language (RTL/LTR) Sites",
+          capI18nDesc:
+            "Building sites that switch between Persian and English, correctly handling RTL and LTR layouts.",
+          capThemeTitle: "Dark / Light Mode",
+          capThemeDesc:
+            "Implementing theme switchers that remember the user's preference and adapt the entire design smoothly.",
+          capComponentsTitle: "Reusable UI Components",
+          capComponentsDesc:
+            "Building buttons, cards, navbars, progress bars and menus with Tailwind and Bootstrap that stay consistent across a project.",
+          projectsTitle: "My Projects",
+          digilandTitle: "DigiLand Project",
+          digilandDesc:
+            "This project was built using HTML, CSS, Tailwind, Swiper.js and Vanilla JS. It is a sample recreation of the DigiLand website. The site is fully responsive and uses numerous animations.",
+          viewDemo: "View Demo",
+          contactTitle: "Get In Touch",
+          contactSubtitle:
+            "Have a project in mind? Fill out the form below and I'll get back to you by email.",
+          contactNameLabel: "Full Name",
+          contactNamePlaceholder: "Please enter your full name",
+          contactEmailLabel: "Email",
+          contactEmailPlaceholder: "you@example.com",
+          contactMessageLabel: "Message",
+          contactMessagePlaceholder: "Tell me about your project...",
+          contactSubmit: "Send Message",
+          contactSending: "Sending...",
+          contactSuccess:
+            "Thanks! Your message has been sent — I'll reply soon.",
+          contactError:
+            "Something went wrong. Please try again or email me directly.",
+          errorNameRequired: "Please enter your name.",
+          errorNameShort: "Name must be at least 2 characters.",
+          errorNameInvalidChars: "Name can only contain letters and spaces.",
+          errorEmailRequired: "Please enter your email.",
+          errorEmailInvalid: "Please enter a valid email address.",
+          errorEmailTypo:
+            "Did you mean {domain}? Please fix your email domain.",
+          errorEmailUnsupported:
+            "Please use a common email provider (e.g. Gmail, Yahoo, Outlook, iCloud).",
+          errorMessageRequired: "Please enter your message.",
+          errorMessageShort: "Message must be at least 10 characters.",
+          errorCaptchaRequired: "Please verify that you're not a robot.",
+          contactValidationError: "Please fix the errors above before sending.",
+          footerText: "© 2026 Amirreza Farshid. All rights reserved.",
+          skipToContent: "Skip to main content",
+        },
+        fa: {
+          logoName: "امیررضا فرشید",
+          navHome: "خانه",
+          navSkills: "مهارت‌ها",
+          navCapabilities: "توانایی‌های من",
+          navProjects: "پروژه‌ها",
+          navContact: "تماس",
+          heroGreeting:
+            'سلام، من <span class="gradient-text">امیررضا</span> هستم',
+          heroSubtitle:
+            "توسعه‌دهنده فرانت‌اند که به طراحی وب‌سایت‌های مدرن، واکنش‌گرا و انیمیشن‌دار علاقه دارم.",
+          btnProjects: "پروژه‌های من",
+          btnSkills: "مهارت‌های من",
+          availableForWork: "آماده همکاری",
+          skillsTitle: "مهارت‌ها",
+          capabilitiesTitle: "چه کارهایی می‌توانم انجام دهم؟",
+          capabilitiesSubtitle:
+            "نگاهی دقیق‌تر به کارهایی که با ابزارهایی که بلدم می‌توانم انجام دهم.",
+          capResponsiveTitle: "طراحی وب‌سایت ریسپانسیو",
+          capResponsiveDesc:
+            "ساخت وب‌سایت‌هایی که روی هر صفحه‌ای، از موبایل تا مانیتورهای بزرگ دسکتاپ، عالی دیده می‌شوند و کار می‌کنند.",
+          capLandingTitle: "طراحی سایت فروشگاهی، شخصی و شرکتی",
+          capLandingDesc:
+            "طراحی سایت‌های فروشگاهی و سایت‌های شخصی و سایت‌های شرکتی با استفاده از بوت‌استرپ و تیل‌ویند و جاوااسکریپت و اچ‌تی‌ام‌ال و سی‌اس‌اس.",
+          capAnimationTitle: "انیمیشن‌های رابط کاربری",
+          capAnimationDesc:
+            "افزودن جلوه‌های هاور، اشکال شناور، فید-این و دیگر انیمیشن‌های کوچکی که سایت را زنده و پویا می‌کنند.",
+          capI18nTitle: "سایت‌های چندزبانه (راست‌چین/چپ‌چین)",
+          capI18nDesc:
+            "ساخت سایت‌هایی که بین فارسی و انگلیسی جابه‌جا می‌شوند و چیدمان راست‌چین و چپ‌چین را به‌درستی مدیریت می‌کنند.",
+          capThemeTitle: "حالت تاریک / روشن",
+          capThemeDesc:
+            "پیاده‌سازی سوییچ تم که ترجیح کاربر را به‌خاطر می‌سپارد و کل طراحی را به‌نرمی تغییر می‌دهد.",
+          capComponentsTitle: "کامپوننت‌های قابل استفاده مجدد",
+          capComponentsDesc:
+            "ساخت دکمه‌ها، کارت‌ها، نوار ناوبری، نوار پیشرفت و منوها با تیلویند و بوت‌استرپ که در کل پروژه یکدست بمانند.",
+          projectsTitle: "پروژه‌های من",
+          digilandTitle: "پروژه دیجی‌لند",
+          digilandDesc:
+            "این پروژه با استفاده از اچ‌تی‌ام‌ال، سی‌اس‌اس، تیل‌ویند، Swiper.js و Vanilla JS ساخته شده. این پروژه نمونه‌ای از سایت دیجی‌لند هست. این سایت ریسپانسیو شده و در این سایت از انیمیشن‌های متعددی استفاده شده.",
+          viewDemo: "مشاهده دمو",
+          contactTitle: "در تماس باشید",
+          contactSubtitle:
+            "پروژه‌ای در ذهن داری؟ فرم پایین رو پر کن تا از طریق ایمیل باهات در تماس باشم.",
+          contactNameLabel: "نام و نام خانوادگی",
+          contactNamePlaceholder: "نام و نام خانوادگی شما",
+          contactEmailLabel: "ایمیل",
+          contactEmailPlaceholder: "you@example.com",
+          contactMessageLabel: "پیام",
+          contactMessagePlaceholder: "درباره پروژه‌ات بگو...",
+          contactSubmit: "ارسال پیام",
+          contactSending: "در حال ارسال...",
+          contactSuccess: "ممنون! پیامت ارسال شد — به‌زودی پاسخ می‌دم.",
+          contactError:
+            "مشکلی پیش اومد. دوباره امتحان کن یا مستقیم برام ایمیل بزن.",
+          errorNameRequired: "لطفاً نام خود را وارد کنید.",
+          errorNameShort: "نام باید حداقل ۲ حرف باشد.",
+          errorNameInvalidChars: "نام فقط باید شامل حروف و فاصله باشد.",
+          errorEmailRequired: "لطفاً ایمیل خود را وارد کنید.",
+          errorEmailInvalid: "لطفاً یک ایمیل معتبر وارد کنید.",
+          errorEmailTypo: "منظورت {domain} بود؟ لطفاً دامنه ایمیل رو اصلاح کن.",
+          errorEmailUnsupported:
+            "لطفاً از یک ایمیل شناخته‌شده (مثل جیمیل، یاهو، اوت‌لوک، آی‌کلود) استفاده کن.",
+          errorMessageRequired: "لطفاً پیام خود را وارد کنید.",
+          errorMessageShort: "پیام باید حداقل ۱۰ کاراکتر باشد.",
+          errorCaptchaRequired: "لطفاً تیک تأیید ربات نبودن را بزنید.",
+          contactValidationError:
+            "لطفاً قبل از ارسال، خطاهای بالا را برطرف کنید.",
+          footerText: "© ۲۰۲۶ امیررضا فرشید. تمامی حقوق محفوظ است.",
+          skipToContent: "رفتن به محتوای اصلی",
+        },
+      };
+
+      // فقط این کلیدها واقعاً حاوی تگ HTML هستن؛ بقیه با textContent ست می‌شن
+      const htmlKeys = new Set(["heroGreeting"]);
+
+      function safeGetLang() {
+        try {
+          return localStorage.getItem("site-lang");
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function safeSetLang(lang) {
+        try {
+          localStorage.setItem("site-lang", lang);
+        } catch (e) {
+          /* localStorage blocked (local file / sandboxed preview) — ignore */
+        }
+      }
+
+      function initLangToggle() {
+        const langToggle = document.getElementById("lang-toggle");
+        const htmlEl = document.documentElement;
+
+        if (!langToggle) {
+          console.warn("lang-toggle button not found in DOM");
+          return;
+        }
+
+        function applyLanguage(lang) {
+          const dict = translations[lang];
+          document.querySelectorAll("[data-i18n]").forEach((el) => {
+            const key = el.getAttribute("data-i18n");
+            if (dict[key] !== undefined) {
+              if (htmlKeys.has(key)) {
+                el.innerHTML = dict[key];
+              } else {
+                el.textContent = dict[key];
+              }
+            }
+          });
+          document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+            const key = el.getAttribute("data-i18n-placeholder");
+            if (dict[key] !== undefined) {
+              el.setAttribute("placeholder", dict[key]);
+            }
+          });
+
+          htmlEl.lang = lang;
+          htmlEl.dir = lang === "fa" ? "rtl" : "ltr";
+          document.title =
+            lang === "fa"
+              ? "امیررضا فرشید | توسعه‌دهنده فرانت‌اند"
+              : "Amirreza Farshid | Front-End Developer";
+
+          // button shows the language you'd switch TO
+          langToggle.textContent = lang === "fa" ? "en" : "fa";
+          updateLangToggleLabel(lang);
+          updateThemeToggleLabel();
+          safeSetLang(lang);
+          document.dispatchEvent(new CustomEvent("i18n:changed"));
+        }
+
+        function updateLangToggleLabel(lang) {
+          const labels = {
+            en: "Switch to Persian",
+            fa: "تغییر به انگلیسی",
+          };
+          langToggle.setAttribute(
+            "aria-label",
+            lang === "fa" ? labels.fa : labels.en,
+          );
+        }
+
+        langToggle.addEventListener("click", () => {
+          const current = htmlEl.lang === "fa" ? "fa" : "en";
+          const next = current === "en" ? "fa" : "en";
+          applyLanguage(next);
+        });
+
+        const savedLang = safeGetLang();
+        if (savedLang && translations[savedLang]) {
+          applyLanguage(savedLang);
+        } else {
+          updateLangToggleLabel(htmlEl.lang === "fa" ? "fa" : "en");
+        }
+      }
+
+      function safeGetTheme() {
+        try {
+          return localStorage.getItem("site-theme");
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function safeSetTheme(theme) {
+        try {
+          localStorage.setItem("site-theme", theme);
+        } catch (e) {
+          /* localStorage blocked (local file / sandboxed preview) — ignore */
+        }
+      }
+
+      function applyTheme(theme) {
+        const htmlEl = document.documentElement;
+        if (theme === "light") {
+          htmlEl.classList.add("light");
+        } else {
+          htmlEl.classList.remove("light");
+        }
+        safeSetTheme(theme);
+        updateThemeToggleLabel();
+      }
+
+      function updateThemeToggleLabel() {
+        const themeToggle = document.getElementById("theme-toggle");
+        if (!themeToggle) return;
+        const isLight = document.documentElement.classList.contains("light");
+        const lang = document.documentElement.lang === "fa" ? "fa" : "en";
+        const labels = {
+          en: {
+            toDark: "Switch to dark mode",
+            toLight: "Switch to light mode",
+          },
+          fa: {
+            toDark: "رفتن به حالت تاریک",
+            toLight: "رفتن به حالت روشن",
+          },
+        };
+        themeToggle.setAttribute(
+          "aria-label",
+          isLight ? labels[lang].toDark : labels[lang].toLight,
+        );
+      }
+
+      function initThemeToggle() {
+        const themeToggle = document.getElementById("theme-toggle");
+        if (!themeToggle) {
+          console.warn("theme-toggle button not found in DOM");
+          return;
+        }
+
+        // default theme is dark unless the user previously chose light
+        const savedTheme = safeGetTheme();
+        applyTheme(savedTheme === "light" ? "light" : "dark");
+
+        themeToggle.addEventListener("click", () => {
+          const isLight = document.documentElement.classList.contains("light");
+          applyTheme(isLight ? "dark" : "light");
+        });
+      }
+
+      function initMobileMenu() {
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+        if (!menuToggle || !mobileMenu) return;
+
+        const menuLinks = mobileMenu.querySelectorAll("a");
+
+        function setMenuOpen(isOpen) {
+          menuToggle.classList.toggle("open", isOpen);
+          mobileMenu.classList.toggle("open", isOpen);
+          menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+          // keep hidden menu links out of the tab order and off screen readers.
+          // aria-hidden must be the string "true" or simply absent per spec —
+          // toggleAttribute would instead leave a valueless aria-hidden=""
+          // when closed, which isn't spec-compliant.
+          if (isOpen) {
+            mobileMenu.removeAttribute("aria-hidden");
+          } else {
+            mobileMenu.setAttribute("aria-hidden", "true");
+          }
+          menuLinks.forEach((link) => {
+            if (isOpen) {
+              link.removeAttribute("tabindex");
+            } else {
+              link.setAttribute("tabindex", "-1");
+            }
+          });
+          syncNavbarSpacer();
+        }
+
+        menuToggle.addEventListener("click", () => {
+          const isOpen = !menuToggle.classList.contains("open");
+          setMenuOpen(isOpen);
+        });
+
+        menuLinks.forEach((link) => {
+          link.addEventListener("click", () => setMenuOpen(false));
+        });
+
+        // close the menu with Escape and return focus to the toggle button
+        mobileMenu.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            setMenuOpen(false);
+            menuToggle.focus();
+          }
+        });
+      }
+
+      function syncNavbarSpacer() {
+        const navbar = document.getElementById("site-navbar");
+        const spacer = document.getElementById("navbar-spacer");
+        if (!navbar || !spacer) return;
+        const height = navbar.offsetHeight;
+        spacer.style.height = height + "px";
+        // keep --navbar-h up to date so scroll-padding-top (used for anchor
+        // links / clicking nav items) always matches the navbar's real
+        // height on the current screen size — mobile, tablet, and desktop
+        // all have different navbar heights.
+        document.documentElement.style.setProperty("--navbar-h", height + "px");
+      }
+
+      function initNavbarSpacer() {
+        syncNavbarSpacer();
+        window.addEventListener("resize", syncNavbarSpacer);
+      }
+
+      function initBackToTop() {
+        const backToTop = document.getElementById("back-to-top");
+        if (!backToTop) return;
+
+        function toggleVisibility() {
+          const scrollable =
+            document.documentElement.scrollHeight - window.innerHeight;
+          // show once the user has scrolled a bit past the middle of the page
+          const threshold = scrollable * 0.55;
+          const shouldShow = scrollable > 0 && window.scrollY > threshold;
+          backToTop.classList.toggle("visible", shouldShow);
+          // keep it out of the tab order while invisible so keyboard users
+          // don't land on a button they can't see
+          if (shouldShow) {
+            backToTop.removeAttribute("tabindex");
+          } else {
+            backToTop.setAttribute("tabindex", "-1");
+          }
+        }
+
+        backToTop.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        window.addEventListener("scroll", toggleVisibility, { passive: true });
+        window.addEventListener("resize", toggleVisibility);
+        toggleVisibility();
+      }
+
+      function initContactForm() {
+        const form = document.getElementById("contact-form");
+        const submitBtn = document.getElementById("contact-submit");
+        const status = document.getElementById("contact-status");
+        if (!form || !submitBtn || !status) return;
+
+        function currentLang() {
+          return document.documentElement.lang === "fa" ? "fa" : "en";
+        }
+
+        // common personal email providers — anything else gets flagged
+        const KNOWN_EMAIL_DOMAINS = [
+          "gmail.com",
+          "yahoo.com",
+          "outlook.com",
+          "hotmail.com",
+          "icloud.com",
+          "aol.com",
+          "protonmail.com",
+          "live.com",
+          "msn.com",
+          "yandex.com",
+          "zoho.com",
+          "gmx.com",
+          "mail.com",
+        ];
+
+        function levenshteinDistance(a, b) {
+          const m = a.length;
+          const n = b.length;
+          const dp = Array.from({ length: m + 1 }, () =>
+            new Array(n + 1).fill(0),
+          );
+          for (let i = 0; i <= m; i++) dp[i][0] = i;
+          for (let j = 0; j <= n; j++) dp[0][j] = j;
+          for (let i = 1; i <= m; i++) {
+            for (let j = 1; j <= n; j++) {
+              if (a[i - 1] === b[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1];
+              } else {
+                dp[i][j] =
+                  1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+              }
+            }
+          }
+          return dp[m][n];
+        }
+
+        function closestKnownDomain(domain) {
+          let best = null;
+          let bestDistance = Infinity;
+          KNOWN_EMAIL_DOMAINS.forEach((known) => {
+            const distance = levenshteinDistance(domain, known);
+            if (distance < bestDistance) {
+              bestDistance = distance;
+              best = known;
+            }
+          });
+          return { domain: best, distance: bestDistance };
+        }
+
+        function formatMessage(key, params) {
+          let template = translations[currentLang()][key] || "";
+          if (params) {
+            Object.keys(params).forEach((p) => {
+              template = template.replace(`{${p}}`, params[p]);
+            });
+          }
+          return template;
+        }
+
+        // field name -> validator that returns an i18n error key, or null if valid
+        const fieldValidators = {
+          name: (value) => {
+            const trimmed = value.trim();
+            if (!trimmed) return "errorNameRequired";
+            if (trimmed.length < 2) return "errorNameShort";
+            // whitelist only the actual Persian/Arabic letter codepoints
+            // (not the whole \u0600-\u06FF block), since that block also
+            // contains Persian digits, commas, question marks, and
+            // diacritics like tashdid — all of which must be rejected.
+            const namePattern =
+              /^[A-Za-zÀ-ÖØ-öø-ÿ\u0621-\u064A\u0671-\u06D3\u200C\s]+$/;
+            if (!namePattern.test(trimmed)) return "errorNameInvalidChars";
+            return null;
+          },
+          email: (value) => {
+            const trimmed = value.trim();
+            if (!trimmed) return "errorEmailRequired";
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(trimmed)) return "errorEmailInvalid";
+
+            const domain = trimmed.split("@")[1].toLowerCase();
+            if (KNOWN_EMAIL_DOMAINS.includes(domain)) return null;
+
+            const { domain: closest, distance } = closestKnownDomain(domain);
+            if (closest && distance > 0 && distance <= 2) {
+              return { key: "errorEmailTypo", params: { domain: closest } };
+            }
+            return "errorEmailUnsupported";
+          },
+          message: (value) => {
+            const trimmed = value.trim();
+            if (!trimmed) return "errorMessageRequired";
+            if (trimmed.length < 10) return "errorMessageShort";
+            return null;
+          },
+        };
+
+        const fieldNames = Object.keys(fieldValidators);
+
+        function getFieldEls(fieldName) {
+          return {
+            input: document.getElementById(`contact-${fieldName}`),
+            error: document.getElementById(`contact-${fieldName}-error`),
+          };
+        }
+
+        function setFieldError(fieldName, errorInfo) {
+          const { input, error } = getFieldEls(fieldName);
+          if (!input || !error) return;
+          if (errorInfo) {
+            const key =
+              typeof errorInfo === "string" ? errorInfo : errorInfo.key;
+            const params =
+              typeof errorInfo === "string" ? null : errorInfo.params;
+            error.textContent = formatMessage(key, params);
+            error.classList.remove("hidden");
+            input.setAttribute("aria-invalid", "true");
+            input.classList.add("border-red-500");
+          } else {
+            error.textContent = "";
+            error.classList.add("hidden");
+            input.removeAttribute("aria-invalid");
+            input.classList.remove("border-red-500");
+          }
+        }
+
+        function validateField(fieldName) {
+          const { input } = getFieldEls(fieldName);
+          if (!input) return true;
+          const errorInfo = fieldValidators[fieldName](input.value);
+          setFieldError(fieldName, errorInfo);
+          return !errorInfo;
+        }
+
+        function isFormCurrentlyValid() {
+          const fieldsOk = fieldNames.every((fieldName) => {
+            const { input } = getFieldEls(fieldName);
+            if (!input) return true;
+            return !fieldValidators[fieldName](input.value);
+          });
+          return fieldsOk && Boolean(getCaptchaResponse());
+        }
+
+        function maybeClearValidationStatus() {
+          if (hasAttemptedSubmit && isFormCurrentlyValid()) {
+            status.textContent = "";
+            status.classList.add("hidden");
+            lastStatusKey = null;
+            lastStatusType = null;
+          }
+        }
+
+        function resetCaptcha() {
+          try {
+            if (
+              window.hcaptcha &&
+              typeof window.hcaptcha.reset === "function"
+            ) {
+              window.hcaptcha.reset();
+            } else {
+              console.warn(
+                "hcaptcha global not found — captcha widget was not reset automatically",
+              );
+            }
+          } catch (err) {
+            console.warn("Could not reset hCaptcha widget:", err);
+          }
+        }
+
+        function getCaptchaResponse() {
+          const el = form.querySelector('textarea[name="h-captcha-response"]');
+          return el ? el.value : "";
+        }
+
+        function validateCaptcha() {
+          const container = document.getElementById("captcha-container");
+          const error = document.getElementById("contact-captcha-error");
+          const isValid = Boolean(getCaptchaResponse());
+          if (container) {
+            container.classList.toggle("border-red-500", !isValid);
+            container.classList.toggle("border-transparent", isValid);
+          }
+          if (error) {
+            if (isValid) {
+              error.textContent = "";
+              error.classList.add("hidden");
+            } else {
+              error.textContent =
+                translations[currentLang()].errorCaptchaRequired;
+              error.classList.remove("hidden");
+            }
+          }
+          return isValid;
+        }
+
+        // hCaptcha calls this by name (data-callback) once the user solves it
+        window.onCaptchaVerified = function () {
+          if (hasAttemptedSubmit) {
+            validateCaptcha();
+            maybeClearValidationStatus();
+          }
+        };
+
+        function validateAll() {
+          // .map first so every field gets validated (not short-circuited)
+          const results = fieldNames.map((fieldName) =>
+            validateField(fieldName),
+          );
+          const captchaValid = validateCaptcha();
+          return results.every(Boolean) && captchaValid;
+        }
+
+        // errors only start showing after the first submit attempt — before
+        // that, tabbing through empty fields shouldn't trigger anything
+        let hasAttemptedSubmit = false;
+        // remembers which status message is currently shown so it can be
+        // re-translated in place if the user switches language
+        let lastStatusKey = null;
+        let lastStatusType = null;
+
+        // live validation: once the user has tried to submit, re-check on
+        // blur and on input so a fixed field clears its error right away
+        fieldNames.forEach((fieldName) => {
+          const { input } = getFieldEls(fieldName);
+          if (!input) return;
+          input.addEventListener("blur", () => {
+            if (hasAttemptedSubmit) validateField(fieldName);
+          });
+          input.addEventListener("input", () => {
+            if (
+              hasAttemptedSubmit &&
+              input.getAttribute("aria-invalid") === "true"
+            ) {
+              validateField(fieldName);
+            }
+            maybeClearValidationStatus();
+          });
+        });
+
+        // keep visible error messages in sync when the user switches language
+        document.addEventListener("i18n:changed", () => {
+          if (hasAttemptedSubmit) {
+            fieldNames.forEach((fieldName) => validateField(fieldName));
+            validateCaptcha();
+          }
+          if (lastStatusKey && !status.classList.contains("hidden")) {
+            showStatus(lastStatusKey, lastStatusType);
+          }
+        });
+
+        function showStatus(key, type) {
+          lastStatusKey = key;
+          lastStatusType = type;
+          const dict = translations[currentLang()];
+          const styles = {
+            sending: "text-gray-400",
+            success:
+              "text-green-400 bg-green-400/10 border border-green-400/30",
+            error: "text-red-400 bg-red-400/10 border border-red-400/30",
+          };
+          status.textContent = dict[key];
+          status.className =
+            "text-center text-sm rounded-lg py-2 px-3 " + styles[type];
+        }
+
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          hasAttemptedSubmit = true;
+
+          if (!validateAll()) {
+            showStatus("contactValidationError", "error");
+            const firstInvalid = form.querySelector('[aria-invalid="true"]');
+            if (firstInvalid) firstInvalid.focus();
+            return;
+          }
+
+          const dict = translations[currentLang()];
+          submitBtn.disabled = true;
+          const originalLabel = submitBtn.textContent;
+          submitBtn.textContent = dict.contactSending;
+          showStatus("contactSending", "sending");
+
+          try {
+            const formData = new FormData(form);
+            const response = await fetch("https://api.web3forms.com/submit", {
+              method: "POST",
+              headers: { Accept: "application/json" },
+              body: formData,
+            });
+            const result = await response.json();
+
+            if (result.success) {
+              showStatus("contactSuccess", "success");
+              form.reset();
+              fieldNames.forEach((fieldName) => setFieldError(fieldName, null));
+              resetCaptcha();
+              const captchaContainer =
+                document.getElementById("captcha-container");
+              const captchaError = document.getElementById(
+                "contact-captcha-error",
+              );
+              if (captchaContainer) {
+                captchaContainer.classList.remove("border-red-500");
+                captchaContainer.classList.add("border-transparent");
+              }
+              if (captchaError) {
+                captchaError.textContent = "";
+                captchaError.classList.add("hidden");
+              }
+            } else {
+              showStatus("contactError", "error");
+            }
+          } catch (err) {
+            showStatus("contactError", "error");
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalLabel;
+          }
+        });
+      }
+
+      function init() {
+        initThemeToggle();
+        initLangToggle();
+        initMobileMenu();
+        initNavbarSpacer();
+        initBackToTop();
+        initContactForm();
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
+    </script>
+
+    <!-- renders the free hCaptcha widget above and validates it server-side via Web3Forms -->
+    <script src="https://web3forms.com/client/script.js" async defer></script>
+  </body>
+</html>
