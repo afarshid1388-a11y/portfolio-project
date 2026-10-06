@@ -75,7 +75,7 @@
         background: #030712;
       }
       ::-webkit-scrollbar-thumb {
-        background: linear-gradient(180deg, #3b82f6, #a855f7);
+        background: linear-gradient(180deg, #173755, #315c73);
         border-radius: 999px;
       }
 
@@ -456,6 +456,55 @@
         );
         border-color: rgba(15, 23, 42, 0.08);
       }
+
+      /* Modern navy and cream palette */
+      html.light body { background-color: #f4efe5; color: #14283f; }
+      html.light ::-webkit-scrollbar-track { background: #e7dfd1; }
+      html.light ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #173755, #315c73); }
+      html.light header nav { background-color: rgba(244, 239, 229, 0.92); border-bottom-color: rgba(20, 40, 63, 0.13); }
+      html.light #mobile-menu { background-color: rgba(244, 239, 229, 0.98); border-bottom-color: rgba(20, 40, 63, 0.13); }
+      html.light .text-gray-400 { color: #536575; }
+      html.light .text-gray-500 { color: #73808b; }
+      html.light .blur-3xl { display: none; }
+      html.light #lang-toggle:hover, html.light #theme-toggle:hover { box-shadow: 0 0 14px rgba(23, 55, 85, 0.14); }
+      html.light .capability-card:hover { box-shadow: 0 18px 40px -14px rgba(20, 40, 63, 0.2); }
+      html.light .group:hover .bg-gray-700 { box-shadow: none; }
+      html.light .hover\:shadow-blue-500\/20:hover,
+      html.light .hover\:shadow-blue-500\/40:hover,
+      html.light .group:hover .group-hover\:shadow-blue-500\/50 { box-shadow: none; }
+      html.light .underline-grow,
+      html.light .underline-grow:hover,
+      html.light .underline-grow:focus-visible { color: inherit; }
+      html.light .underline-grow::after,
+      html.light .underline-grow:hover::after,
+      html.light .underline-grow:focus-visible::after { background-color: #173755; }
+      html.light .gradient-text { background-image: linear-gradient(100deg, #14283f 0%, #315c73 100%); animation: none; }
+      html.light .bg-blue-500,
+      html.light .bg-blue-500 *,
+      html.light .bg-blue-500:hover,
+      html.light .bg-blue-500:hover * { color: #fffdf8; }
+      html.light .bg-blue-500 { background-color: #173755; }
+      html.light .bg-blue-500:hover, html.light .hover\:bg-blue-600:hover { background-color: #244b68; }
+      html.light .hover\:text-blue-400:hover { color: #315c73; }
+      html.light .hover\:border-blue-400:hover { border-color: #315c73; }
+      html.light .from-blue-500 { --tw-gradient-from: #173755 var(--tw-gradient-from-position); }
+      html.light .to-purple-500 { --tw-gradient-to: #78909b var(--tw-gradient-to-position); }
+      html.light .bg-gray-900.border-white\/10 { background-color: #fbf8f1; border-color: rgba(20, 40, 63, 0.1); box-shadow: 0 18px 48px -28px rgba(20, 40, 63, 0.28); }
+      html.light .bg-gray-800 { background-color: #fbf8f1; border: 1px solid rgba(20, 40, 63, 0.09); box-shadow: 0 12px 30px -22px rgba(20, 40, 63, 0.25); }
+      html.light .bg-gray-700 { background-color: #ded8cc; }
+      html.light #skills .grid > div {
+        border: 1px solid rgba(23, 55, 85, 0.14);
+        box-shadow: 0 3px 12px rgba(23, 55, 85, 0.07);
+      }
+      html.light #lang-toggle, html.light #theme-toggle { border-color: rgba(20, 40, 63, 0.18); background: rgba(251, 248, 241, 0.84); color: #14283f; }
+      html.light #lang-toggle:hover, html.light #theme-toggle:hover { border-color: #315c73; box-shadow: 0 0 16px rgba(49, 92, 115, 0.18); }
+      html.light .capability-card:hover { border-color: rgba(49, 92, 115, 0.42); box-shadow: 0 18px 40px -14px rgba(20, 40, 63, 0.2); }
+      html.light .capability-icon { background: linear-gradient(135deg, rgba(23, 55, 85, 0.12), rgba(120, 144, 155, 0.16)); border-color: rgba(20, 40, 63, 0.1); }
+      html.light .ring-spin { background: conic-gradient(from 0deg, #173755, #78909b, #173755); }
+      html.light .border-gray-600 { border-color: #c7c1b6; }
+      html.light img.border-gray-950 { border-color: #f4efe5; }
+      html.light input, html.light textarea { color: #14283f; }
+      html.light input::placeholder, html.light textarea::placeholder { color: #82909a; }
 
       @media (prefers-reduced-motion: reduce) {
         .blob,
@@ -1619,9 +1668,9 @@
           return;
         }
 
-        // default theme is dark unless the user previously chose light
+        // Default to the warm light palette unless the user previously chose dark.
         const savedTheme = safeGetTheme();
-        applyTheme(savedTheme === "light" ? "light" : "dark");
+        applyTheme(savedTheme === "dark" ? "dark" : "light");
 
         themeToggle.addEventListener("click", () => {
           const isLight = document.documentElement.classList.contains("light");
